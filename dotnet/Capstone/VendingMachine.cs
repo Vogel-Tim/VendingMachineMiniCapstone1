@@ -26,6 +26,12 @@ namespace Capstone
             Balance = 0;
         }
 
-
+        public void printInventory()
+        {
+            foreach(VendingMachineItem item in Inventory)
+            {
+                Console.WriteLine($"{item.SlotPosition} {item.Name} {item.Price} {item.DisplayMessage()}");
+            }
+        }
     }
 }

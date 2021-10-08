@@ -14,12 +14,12 @@ namespace Capstone
             Display = "Munch Munch, Yum!";
         }
 
-        public Candy(string slotPosition, string name) : base(slotPosition, name)
+        public Candy(string slotPosition, string name) : base (slotPosition, name)
         {
             Display = "Munch Munch, Yum!";
         }
 
-        public Candy(string slotPosition, string name, decimal price)
+        public Candy(string slotPosition, string name, decimal price) : base (slotPosition, name, price)
         {
             Display = "Munch Munch, Yum!";
         }

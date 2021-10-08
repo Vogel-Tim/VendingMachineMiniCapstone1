@@ -20,7 +20,7 @@ namespace Capstone
             Data = data;
         }
 
-        public List<VendingMachineItem> ArrangeItems()
+        public List<VendingMachineItem> StockVendingMachine()
         {
             List<string> rawData = new List<string>();
             List<VendingMachineItem> supply = new List<VendingMachineItem>();

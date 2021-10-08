@@ -18,7 +18,7 @@ namespace Capstone
             Display = "Crunch Crunch, Yum!";
         }
 
-        public Chip(string slotPosition, string name, decimal price)
+        public Chip(string slotPosition, string name, decimal price) : base (slotPosition, name, price)
         {
             Display = "Crunch Crunch, Yum!";
         }
