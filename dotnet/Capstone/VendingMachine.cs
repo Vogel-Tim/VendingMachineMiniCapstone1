@@ -9,6 +9,7 @@ namespace Capstone
 
         //Class Properties
         private List<VendingMachineItem> Inventory { get; } = new List<VendingMachineItem>();
+        public Dictionary<string, int> Stock { get; private set; } = new Dictionary<string, int>();
         public string Name { get; }
         public decimal Balance { get; private set; }
 
@@ -17,6 +18,12 @@ namespace Capstone
         {
             Name = "VENDO-MATIC 800";
             Balance = 0;
+
+            foreach (VendingMachineItem item in Inventory)
+            {
+                Stock.Add(item.SlotPosition, 5);
+            }
+           
         }
 
         public VendingMachine(List<VendingMachineItem> inventory)
@@ -24,14 +31,23 @@ namespace Capstone
             Inventory = inventory;
             Name = "VENDO-MATIC 800";
             Balance = 0;
+
+            foreach (VendingMachineItem item in Inventory)
+            {
+                Stock.Add(item.SlotPosition, 5);
+            }
+            
         }
 
         public void printInventory()
         {
             foreach(VendingMachineItem item in Inventory)
             {
-                Console.WriteLine($"{item.SlotPosition} {item.Name} {item.Price} {item.DisplayMessage()}");
+                Console.WriteLine($"{item.SlotPosition} {item.Name} {item.Price} {item.DisplayMessage()} {Stock[item.SlotPosition]}");
+                
             }
+
+
         }
     }
 }
