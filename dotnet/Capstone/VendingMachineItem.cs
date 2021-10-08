@@ -6,9 +6,9 @@ namespace Capstone
 {
     public abstract class VendingMachineItem
     {
-        public string Name { get; private set; }
-        public string SlotPosition { get; private set;}
-        public decimal Price { get; private set; }
+        public string Name { get; }
+        public string SlotPosition { get; }
+        public decimal Price { get; }
 
 
         public VendingMachineItem()
