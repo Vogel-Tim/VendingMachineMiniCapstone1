@@ -18,11 +18,6 @@ namespace Capstone
         {
             Name = "VENDO-MATIC 800";
             Balance = 0;
-
-            foreach (VendingMachineItem item in Inventory)
-            {
-                Stock.Add(item.SlotPosition, 5);
-            }
            
         }
 

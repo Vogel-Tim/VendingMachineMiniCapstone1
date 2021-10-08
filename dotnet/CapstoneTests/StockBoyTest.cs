@@ -1,13 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CapstoneTests
 {
     [TestClass]
-    public class UnitTest1
+    class StockBoyTest
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
     }
 }
