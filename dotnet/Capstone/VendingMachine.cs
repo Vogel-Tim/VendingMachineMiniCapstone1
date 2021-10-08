@@ -39,9 +39,15 @@ namespace Capstone
 
         public void PrintInventory()
         {
-            foreach(VendingMachineItem item in Inventory)
+            Console.WriteLine("***********************************************");
+            Console.WriteLine("***LOCATION  ~  NAME  ~  PRICE  ~  REMAINING***");
+            Console.WriteLine("***********************************************");
+            Console.WriteLine();
+            foreach (VendingMachineItem item in Inventory)
             {
-                Console.WriteLine($"{item.SlotPosition} {item.Name} {item.Price} {item.DisplayMessage()} {Stock[item.SlotPosition]}");
+               
+
+                Console.WriteLine($"{item.SlotPosition}  ~  {item.Name}  ~  {item.Price}  ~  {Stock[item.SlotPosition]}");
                 
             }
 
