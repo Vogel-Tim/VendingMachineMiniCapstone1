@@ -113,6 +113,8 @@ namespace Capstone
             Console.WriteLine("(4) $10");
             Console.WriteLine("(5) $20");
             Console.WriteLine("(6) EXIT to main menu");
+            Console.WriteLine();
+            Console.WriteLine($"Current money provided {Balance}");
             moneySelection = Console.ReadLine();
             
             if(moneySelection == "1")
@@ -149,7 +151,9 @@ namespace Capstone
         }
         private void FeedMoney(decimal money)
         {
-
+            Balance += money;
+            //Log transaction here
+            FeedMoneyDisplay();
         }
 
 
