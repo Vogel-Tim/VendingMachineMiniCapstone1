@@ -112,7 +112,8 @@ namespace Capstone
             Console.WriteLine("(3) $5");
             Console.WriteLine("(4) $10");
             Console.WriteLine("(5) $20");
-            Console.WriteLine("(6) EXIT to main menu");
+            Console.WriteLine("(6) EXIT to purchase menu");
+            Console.WriteLine("(7) EXIT to main menu");
             Console.WriteLine();
             Console.WriteLine($"Current money provided {Balance}");
             moneySelection = Console.ReadLine();
@@ -138,6 +139,10 @@ namespace Capstone
                 FeedMoney(20);
             }
             else if(moneySelection == "6")
+            {
+                DisplayPurchaseMenu();
+            }
+            else if(moneySelection == "7")
             {
                 MainMenuDisplay();
             }
