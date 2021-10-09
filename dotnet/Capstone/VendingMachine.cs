@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Capstone
 {
@@ -11,6 +10,7 @@ namespace Capstone
         private string mainMenuInput = "";
         private string displayMenuInput = "";
         private string moneySelection = "";
+        private string itemLocation = "";
 
         //Class Properties
         private List<VendingMachineItem> Inventory { get; } = new List<VendingMachineItem>();
@@ -97,7 +97,10 @@ namespace Capstone
             {
                 FeedMoneyDisplay();   
             } 
-
+            else if(displayMenuInput == "2")
+            {
+                SelectProductMenu();
+            }
 
 
 
@@ -162,9 +165,65 @@ namespace Capstone
         }
 
 
-
+        private void SelectProductMenu()
+        {
+            PrintHeader();
+            PrintInventory();
+            Console.WriteLine();
+            Console.WriteLine($"PLEASE SELECT PRODUCT LOCATION :: ${Balance}");
+            itemLocation = Console.ReadLine().ToUpper();
+            PurchaseItem(itemLocation);
+        }
          
+        private void PurchaseItem(string location)
+        {
+            int purcahsedItemIndex = 0;
+            for(int i = 0; i < Inventory.Count; i++)
+            {
+                if (Inventory[i].SlotPosition.Equals(location))
+                {
+                    purcahsedItemIndex = i;
+                }
+            }
+            
+            if (!Stock.ContainsKey(location))
+            {
+                Console.WriteLine("ITEM NOT FOUND::PRESS ENTER TO CONTINUE");
+                Console.ReadLine();
+                DisplayPurchaseMenu();
+            }
+            else if (Stock.ContainsKey(location) && Stock[location] == 0)
+            {
+                Console.WriteLine("ITEM IS SOLD OUT::PRESS ENTER TO CONTINUE");
+                Console.ReadLine();
+                DisplayPurchaseMenu();
+            }
+            else if(Stock.ContainsKey(location) && Stock[location] > 0 && Inventory[purcahsedItemIndex].Price >= Balance)
+            {
+                Console.WriteLine("INSUFFICIENT FUNDS::PLEASE INSERT ADDITIONAL MONEY::PRESS ENTER TO CONTINUE");
+                Console.ReadLine();
+                DisplayPurchaseMenu();
 
+            }
+            else
+            {
+                DispenseItem(purcahsedItemIndex);
+            }
+        }
+
+        private void DispenseItem(int index)
+        {
+            Balance -= Inventory[index].Price;
+            Stock[Inventory[index].SlotPosition]--;
+            //LOG TRANSACTION HERE
+            Console.Clear();
+            Console.WriteLine($"~~~~{Inventory[index].Name.ToUpper()} DISPENSED~~~~");
+            Console.WriteLine();
+            Console.WriteLine($"    {Inventory[index].DisplayMessage()}");
+            Console.WriteLine($"{Inventory[index].Name} COST ${Inventory[index].Price} ~ ${Balance} REMAINING BALANCE");
+            Console.ReadLine();
+            DisplayPurchaseMenu();
+        }
 
         public void Run()
         {

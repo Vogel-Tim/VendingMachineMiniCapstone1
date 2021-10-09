@@ -56,7 +56,7 @@ namespace Capstone
                     }
                     else if (makeClassObject[3].Equals("Drink"))
                     {
-                        VendingMachineItem createItem = new Gum(makeClassObject[0], makeClassObject[1], decimal.Parse(makeClassObject[2]));
+                        VendingMachineItem createItem = new Drink(makeClassObject[0], makeClassObject[1], decimal.Parse(makeClassObject[2]));
                         supply.Add(createItem);
                     }
                     else
