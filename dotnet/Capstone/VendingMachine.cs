@@ -36,7 +36,6 @@ namespace Capstone
             {
                 Stock.Add(item.SlotPosition, 5);
             }
-            
         }
 
         private void PrintHeader()
@@ -55,13 +54,15 @@ namespace Capstone
             Console.WriteLine();
             foreach (VendingMachineItem item in Inventory)
             {
-               
-
-                Console.WriteLine($"{item.SlotPosition}  ~  {item.Name}  ~  {item.Price}  ~  {Stock[item.SlotPosition]}");
-                
+                if(Stock[item.SlotPosition] == 0)
+                {
+                    Console.WriteLine($"{item.SlotPosition}  ~  {item.Name}  ~  {item.Price:C2}  ~  SOLD OUT!");
+                }
+                else
+                {
+                    Console.WriteLine($"{item.SlotPosition}  ~  {item.Name}  ~  {item.Price:C2}  ~  {Stock[item.SlotPosition]}");
+                }   
             }
-
-
         }
 
         private void MainMenuDisplay()
@@ -89,7 +90,7 @@ namespace Capstone
             Console.WriteLine("(2) Select Product");
             Console.WriteLine("(3) Finish Transaction");
             Console.WriteLine();
-            Console.WriteLine($"Current Money Provided: {Balance}");
+            Console.WriteLine($"Current Money Provided: {Balance:C2}");
             displayMenuInput = Console.ReadLine();
 
 
@@ -100,6 +101,10 @@ namespace Capstone
             else if(displayMenuInput == "2")
             {
                 SelectProductMenu();
+            }
+            else if(displayMenuInput == "3")
+            {
+                FinishTransaction();
             }
 
 
@@ -115,12 +120,12 @@ namespace Capstone
             Console.WriteLine("(3) $5");
             Console.WriteLine("(4) $10");
             Console.WriteLine("(5) $20");
-            Console.WriteLine("(6) EXIT to purchase menu");
-            Console.WriteLine("(7) EXIT to main menu");
+            Console.WriteLine("(6) RETURN to previous MENU");
+            Console.WriteLine("(7) ADVANCE to PURCHASE MENU");
             Console.WriteLine();
-            Console.WriteLine($"Current money provided {Balance}");
+            Console.WriteLine($"Current money provided: {Balance:C2}");
             moneySelection = Console.ReadLine();
-            
+           /* 
             if(moneySelection == "1")
             {
                 FeedMoney(1);
@@ -147,7 +152,7 @@ namespace Capstone
             }
             else if(moneySelection == "7")
             {
-                MainMenuDisplay();
+                SelectProductMenu();
             }
             else
             {
@@ -155,7 +160,9 @@ namespace Capstone
                 Console.ReadLine();
                 FeedMoneyDisplay();
             }
-           
+           */
+
+
         }
         private void FeedMoney(decimal money)
         {
@@ -170,9 +177,17 @@ namespace Capstone
             PrintHeader();
             PrintInventory();
             Console.WriteLine();
-            Console.WriteLine($"PLEASE SELECT PRODUCT LOCATION :: ${Balance}");
+            Console.WriteLine($"PLEASE SELECT PRODUCT LOCATION :: BALANCE {Balance:C2} :: Enter BACK to return to previous MENU");
             itemLocation = Console.ReadLine().ToUpper();
-            PurchaseItem(itemLocation);
+            if (itemLocation.Equals("BACK"))
+            {
+                DisplayPurchaseMenu();
+            }
+            else
+            {
+                PurchaseItem(itemLocation);
+            }
+            
         }
          
         private void PurchaseItem(string location)
@@ -196,14 +211,14 @@ namespace Capstone
             {
                 Console.WriteLine("ITEM IS SOLD OUT::PRESS ENTER TO CONTINUE");
                 Console.ReadLine();
-                DisplayPurchaseMenu();
+                SelectProductMenu();
+                
             }
             else if(Stock.ContainsKey(location) && Stock[location] > 0 && Inventory[purcahsedItemIndex].Price >= Balance)
             {
                 Console.WriteLine("INSUFFICIENT FUNDS::PLEASE INSERT ADDITIONAL MONEY::PRESS ENTER TO CONTINUE");
                 Console.ReadLine();
                 DisplayPurchaseMenu();
-
             }
             else
             {
@@ -220,43 +235,64 @@ namespace Capstone
             Console.WriteLine($"~~~~{Inventory[index].Name.ToUpper()} DISPENSED~~~~");
             Console.WriteLine();
             Console.WriteLine($"    {Inventory[index].DisplayMessage()}");
-            Console.WriteLine($"{Inventory[index].Name} COST ${Inventory[index].Price} ~ ${Balance} REMAINING BALANCE");
+            Console.WriteLine($"{Inventory[index].Name} COST {Inventory[index].Price:C2} ~ {Balance:C2} REMAINING BALANCE");
             Console.ReadLine();
             DisplayPurchaseMenu();
+        }
+
+        private void FinishTransaction()
+        {
+            PrintHeader();
+            MakeChange();
+            //LOG TRANSACTION HERE
+            Balance = 0;
+        }
+
+        private void MakeChange()
+        {
+            
+            string change = "";
+            decimal remainingBalance = Balance;
+            int quarters = 0;
+            int dimes = 0;
+            int nickels = 0;
+
+            quarters = (int)(remainingBalance / .25M);
+            remainingBalance -= (decimal)(quarters * 0.25);
+            dimes = (int)(remainingBalance / .10M);
+            remainingBalance -= (decimal)(dimes * .10M);
+            nickels = (int)(remainingBalance / .05M);
+
+           
+            change = $"You recieved {Balance:C2} in Change as: {quarters} Quarters; {dimes} Dimes; {nickels} Nickels.";
+            Console.WriteLine(change);
+            Console.WriteLine("THANK YOU FOR USING VENDO-MATIC 800. HAPPY SNACKING!");
+            Console.ReadLine();
+            
         }
 
         public void Run()
         {
             bool isRunning = true;
             
-           
-            
-
-
             while (isRunning)
             {
                 MainMenuDisplay();
 
-
-
                 mainMenuInput = Console.ReadLine();
                 if (mainMenuInput == "1")
-                    {
-                        
-                        DisplayInventory();
-                    }
-                    else if(mainMenuInput == "2")
-                    {
-                        DisplayPurchaseMenu();
-                    }
-                    else
-                    {
-                    isRunning = false;
-                    }
+                {
 
-                  
-                
-                
+                    DisplayInventory();
+                }
+                else if (mainMenuInput == "2")
+                {
+                    DisplayPurchaseMenu();
+                }
+                else
+                {
+                    isRunning = false;
+                }                
             }
 
         }
