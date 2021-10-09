@@ -9,7 +9,6 @@ namespace Capstone
     {
         private string Data { get; }
         
-
         public StockBoy()
         {
 
@@ -70,8 +69,6 @@ namespace Capstone
                 Console.WriteLine(ex.Message);
             }
             return supply;
-            
         }
-
     }
 }

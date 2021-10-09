@@ -23,8 +23,6 @@ namespace Capstone
             Display = "Crunch Crunch, Yum!";
         }
 
-
-
         public override string DisplayMessage()
         {
             return Display;

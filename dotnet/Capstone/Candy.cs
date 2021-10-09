@@ -6,7 +6,6 @@ namespace Capstone
 {
     public class Candy : VendingMachineItem
     {
-       
         private string Display { get; }
 
         public Candy() : base()
@@ -23,8 +22,6 @@ namespace Capstone
         {
             Display = "Munch Munch, Yum!";
         }
-
-      
 
         public override string DisplayMessage()
         {

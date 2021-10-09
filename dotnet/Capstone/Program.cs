@@ -11,8 +11,6 @@ namespace Capstone
             StockBoy minimumWageWorker = new StockBoy(dataFilePath);
             VendingMachine myVendingMachine = new VendingMachine(minimumWageWorker.StockVendingMachine());
             myVendingMachine.Run();
-            //myVendingMachine.printInventory();
-            
         }
     }
 }
