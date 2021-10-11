@@ -6,14 +6,9 @@ namespace Capstone.Items
 {
     public class Drink : VendingMachineItem
     {
-        private string Display { get; }
+        public string Display { get; }
 
-        public Drink() : base()
-        {
-            Display = "Glug Glug, Yum!";
-        }
-
-        public Drink(string slotPosition, string name) : base(slotPosition, name)
+        public Drink()
         {
             Display = "Glug Glug, Yum!";
         }

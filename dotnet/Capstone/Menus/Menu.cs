@@ -14,6 +14,11 @@ namespace Capstone.Menus
         public bool IsOn { get; set; }
         public VendingMachine VendoMatic800 { get; } = new VendingMachine();
 
+        public Menu()
+        {
+
+        }
+
         public Menu(VendingMachine vendoMatic800)
         {
             VendoMatic800 = vendoMatic800;

@@ -8,13 +8,8 @@ namespace Capstone.VendingMachineClasses
 {
     public class StockBoy
     {
-        private string Data { get; }
+        public string Data { get; }
         
-        public StockBoy()
-        {
-
-        }
-
         public StockBoy(string data)
         {
             Data = data;

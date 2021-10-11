@@ -7,7 +7,11 @@ namespace Capstone.Menus
 {
     public class MainMenu : Menu
     {
-        
+        public MainMenu()
+        {
+
+        }
+
         public MainMenu(VendingMachine vendoMatic800) : base (vendoMatic800)
         {
             

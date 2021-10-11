@@ -8,6 +8,12 @@ namespace Capstone.Menus
 {
     public class FinishTransactionMenu : MainMenu
     {
+
+        public FinishTransactionMenu() : base()
+        {
+
+        }
+
         public FinishTransactionMenu(VendingMachine vendoMatic800) : base(vendoMatic800)
         {
 
@@ -43,7 +49,7 @@ namespace Capstone.Menus
             dimes = (int)(remainingBalance / .10M);
             remainingBalance -= (decimal)(dimes * .10M);
             nickels = (int)(remainingBalance / .05M);
-            Console.WriteLine($"You recieved {VendoMatic800.Balance:C2} in Change as: {quarters} Quarters; {dimes} Dimes; {nickels} Nickels.");
+            Console.WriteLine($"You recieved {VendoMatic800.Balance:C2} in Change as: {quarters} Quarter(s); {dimes} Dime(s); {nickels} Nickel(s).");
             Console.WriteLine("THANK YOU FOR USING VENDO-MATIC 800. HAPPY SNACKING! :: PRESS ENTER TO FINISH THIS TRANSACTION");
             Console.ReadLine();
         }

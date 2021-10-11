@@ -10,6 +10,11 @@ namespace Capstone.Menus
     {
         private decimal moneyInput = 0;
 
+        public FeedMoneyMenu() : base()
+        {
+
+        }
+
         public FeedMoneyMenu(VendingMachine vendoMatic800) : base(vendoMatic800)
         {
 

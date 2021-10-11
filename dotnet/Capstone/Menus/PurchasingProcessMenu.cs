@@ -7,7 +7,11 @@ namespace Capstone.Menus
 {
     public class PurchasingProcessMenu : MainMenu
     {
-       
+        public PurchasingProcessMenu() : base()
+        {
+
+        }
+
         public PurchasingProcessMenu(VendingMachine vendoMatic800) : base(vendoMatic800)
         {
 
@@ -24,7 +28,6 @@ namespace Capstone.Menus
             Console.WriteLine($"Current Money Provided: {VendoMatic800.Balance:C2}");
             purchasingProcessMenuInput = Console.ReadLine();
 
-
             if (purchasingProcessMenuInput == "1")
             {
                 Menu feedMoneyMenu = new FeedMoneyMenu(VendoMatic800);
@@ -39,7 +42,6 @@ namespace Capstone.Menus
             {
                 Menu finishTransactionMenu = new FinishTransactionMenu(VendoMatic800);
                 finishTransactionMenu.IsOnDisplay();
-                
             }
             else
             {
@@ -53,6 +55,5 @@ namespace Capstone.Menus
         {
             base.Log();
         }
-
     }
 }

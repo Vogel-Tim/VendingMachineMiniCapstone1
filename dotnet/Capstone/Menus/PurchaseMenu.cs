@@ -8,9 +8,13 @@ namespace Capstone.Menus
 {
     public class PurchaseMenu : PurchasingProcessMenu
     {
-        
         private string itemLocation = "";
         private int purcahsedItemIndex = 0;
+
+        public PurchaseMenu() : base()
+        {
+
+        }
 
         public PurchaseMenu(VendingMachine vendoMatic800) : base(vendoMatic800)
         {
@@ -70,12 +74,30 @@ namespace Capstone.Menus
             }
         }
 
-        private void DispenseItem(int index)
+        public void DispenseItem(int index)
         {
-            this.Log();
-            VendoMatic800.DecreaseBalance(VendoMatic800.Inventory[index].Price);
-            VendoMatic800.Stock[VendoMatic800.Inventory[index].SlotPosition]--;
-            base.Log();
+            try
+            {
+                this.Log();
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                VendoMatic800.DecreaseBalance(VendoMatic800.Inventory[index].Price);
+                VendoMatic800.Stock[VendoMatic800.Inventory[index].SlotPosition]--;
+            }
+            try
+            {
+                base.Log();
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
             Console.Clear();
             Console.WriteLine($"~~~~{VendoMatic800.Inventory[index].Name.ToUpper()} DISPENSED~~~~");
             Console.WriteLine();
