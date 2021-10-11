@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Capstone
+namespace Capstone.Items
 {
     public abstract class VendingMachineItem
     {
         public string Name { get; }
         public string SlotPosition { get; }
         public decimal Price { get; }
-
 
         public VendingMachineItem()
         {
@@ -29,7 +28,6 @@ namespace Capstone
             Name = name;
             Price = price;
         }
-
 
         public abstract string DisplayMessage();
     }

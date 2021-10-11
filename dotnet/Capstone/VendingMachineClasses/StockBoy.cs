@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Capstone.Items;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace Capstone
+namespace Capstone.VendingMachineClasses
 {
     public class StockBoy
     {
